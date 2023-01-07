@@ -1,0 +1,10 @@
+version: '3'
+services:
+  php:
+    secrets:
+      - source: ssh_git_key
+        target: '/root/.ssh/id_ed25519'
+        mode: 0400
+secrets:
+  ssh_git_key:
+    file: ${SSH_GIT_KEY_FILE}
