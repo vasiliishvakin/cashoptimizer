@@ -1,0 +1,13 @@
+{
+  "name": "vasiliishvakin/docker-test",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "vasiliishvakin",
+      "email": "vasilii.shvakin@gmail.com"
+    }
+  ],
+  "require": {
+  }
+}
