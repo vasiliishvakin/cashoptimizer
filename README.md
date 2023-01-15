@@ -1,3 +1,12 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/vasiliishvakin/cashoptimizer/main/art/repository-open-graph.png" width="400" alt="CashOptimizer
+ Logo"></a></p>
+
+<p align="center">
+<img alt="GitHub" src="https://img.shields.io/github/license/vasiliishvakin/cashoptimizer">
+
+</p>
+
+
 # CashOptimizer
 
 CashOptimizer is a web application that helps users manage their expenses and optimize their cash flow. The application allows users to track their expenses, set budgets, and find the best deals and lowest prices on products.
