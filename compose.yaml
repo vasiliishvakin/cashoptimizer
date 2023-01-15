@@ -3,10 +3,14 @@ services:
   php:
     build:
       context: ./docker/php
+    depends_on:
+      - mysql
     volumes:
       - './src:/var/www/html'
   nginx:
     image: nginx:latest
+    depends_on:
+      - php
     ports:
       - '80:80'
     volumes:
