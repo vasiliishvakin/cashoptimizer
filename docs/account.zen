@@ -1,0 +1,54 @@
+@Actor User
+@Control AccountController
+@Control TransactionController
+@Entity Account
+@Entity Transaction
+@Entity AccountType
+@Entity TransactionType
+
+@Starter(User)
+AccountController.showIndexPage() {
+    accounts = Account.getAll() {
+        foreach(accounts) {
+            accountType = AccountType.getType(account)
+        }
+    }
+    return indexPage
+}
+
+if (getAccountPage(id)) {
+    AccountController.showAccountPage() {
+        account = Account.get(id) {
+            type = AccountType.getType()
+            transactions = Transaction.getByAccount() {
+                foreach (transactions) {
+                    transactionsType = TransactionType.getType()
+                }
+            }
+        }
+        return accountPage;
+    }
+}
+
+else if (addAccount) {
+    form = AccountController.showAddForm() {
+        accountTypes = AccountType.getAll()
+    }
+    AccountController.addAccount(data) {
+        account = Account.addAccount(data)
+    }
+    AccountController.showAccountPage(account.id) {
+        return accountPage
+    }
+}
+else if (addTransaction) {
+    form = TransactionController.showAddForm(account) {
+        if (!account) {
+            accounts = AccountController.getAll()
+        } else {
+            account = AccountController.getAccount(account)
+        }
+        type = TransactionType.getAll()
+    }
+
+}
