@@ -27,6 +27,23 @@ services:
     configs:
       - source: mysql_conf
         target: '/etc/mysql/conf.d/default.conf'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    depends_on:
+      - mysql
+    ports:
+      - 8081:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_PMADB: "phpmyadmin"
+      PMA_QUERYHISTORYDB: true
+      PMA_HOST: mysql
 configs:
   http_conf:
     file: './docker/nginx/conf.d/default.conf'

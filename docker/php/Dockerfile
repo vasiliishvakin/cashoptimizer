@@ -5,7 +5,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN apt-get update && apt-get -y install git mc ssh wget curl
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd pdo_mysql
+    install-php-extensions gd pdo_mysql redis mcrypt apcu imagick yaml igbinary xhprof mbstring xml bcmath
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
