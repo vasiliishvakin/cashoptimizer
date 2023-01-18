@@ -32,8 +32,8 @@ classDiagram
         description: string
     }
 
-    Account o-- User
-    Account o-- AccountType
-    Transaction o-- Account
-    Transaction o-- TransactionType
+    Account "*" o-- "1" User
+    Account "*" o-- "1" AccountType
+    Transaction "*" o-- "1" Account
+    Transaction "*" o-- "1" TransactionType
 ```
