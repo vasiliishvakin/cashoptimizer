@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AccountTypeStoreRequest;
+use App\Http\Requests\AccountTypeRequest;
 use App\Models\AccountType;
 
 class AccountTypeController extends Controller
@@ -31,10 +31,10 @@ class AccountTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param AccountTypeStoreRequest $request
+     * @param AccountTypeRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AccountTypeStoreRequest $request)
+    public function store(AccountTypeRequest $request)
     {
         $data = $request->validated();
         $accountType = AccountType::create($data);
@@ -67,11 +67,11 @@ class AccountTypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param AccountTypeStoreRequest $request
+     * @param AccountTypeRequest $request
      * @param \App\Models\AccountType $accountType
      * @return \Illuminate\Http\Response
      */
-    public function update(AccountTypeStoreRequest $request, AccountType $accountType)
+    public function update(AccountTypeRequest $request, AccountType $accountType)
     {
         $data = $request->validated();
         $accountType->title = $data['title'];
