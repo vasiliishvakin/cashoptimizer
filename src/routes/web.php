@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get("phpinfo", function () {
     phpinfo();
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resources([
+    'account-types' => \App\Http\Controllers\AccountTypeController::class,
+]);

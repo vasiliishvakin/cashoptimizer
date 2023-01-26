@@ -1,0 +1,43 @@
+.app-container {
+    min-height: calc(100vh - 7px) !important;
+    margin-top: 3px !important;
+}
+
+.header {
+    font-family: 'Anonymous Pro', monospace;
+}
+
+.header-title {
+    font-size: 2rem;
+}
+
+.header-title-desc {
+    font-size: 1.2rem;
+}
+
+.navbar-brand > img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+    border-right: 1px solid silver;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-item:not(:last-child) {
+        border-right: none;
+    }
+}
+
+.page-area {
+    min-height: calc(100vh - 90px - 80px - 10px);
+}
+
+.footer {
+    min-height: 80px;
+}
+
+.text-align-right {
+    text-align: right;
+}
