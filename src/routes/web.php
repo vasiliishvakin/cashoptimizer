@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get("phpinfo", function () {
     phpinfo();
@@ -23,8 +23,11 @@ Route::get("phpinfo", function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::resources([
     'account-types' => \App\Http\Controllers\AccountTypeController::class,
+    'accounts' => \App\Http\Controllers\AccountController::class,
 ]);
+
+Route::resource('currencies', \App\Http\Controllers\CurrencyController::class)->only(['index']);

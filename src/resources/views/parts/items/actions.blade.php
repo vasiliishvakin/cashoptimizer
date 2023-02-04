@@ -1,37 +1,37 @@
-<?php /** @var \App\Helpers\BladeRoutesConfig $routes */ ?>
+<?php /** @var \App\Utils\BladeRoutesConfig $routes */ ?>
 
 <?php
 
-use App\Helpers\RoutesTypesEnum;
-use App\Helpers\BootstrapColorsEnum;
+use App\Enums\BootstrapColorEnum;
+use App\Enums\RouteTypeEnum;
 
 $colorsConfig = [
-    RoutesTypesEnum::List->value => BootstrapColorsEnum::Primary,
-    RoutesTypesEnum::View->value => BootstrapColorsEnum::Info,
-    RoutesTypesEnum::Create->value => BootstrapColorsEnum::Primary,
-    RoutesTypesEnum::Edit->value => BootstrapColorsEnum::Warning,
-    RoutesTypesEnum::Store->value => BootstrapColorsEnum::Success,
-    RoutesTypesEnum::Update->value => BootstrapColorsEnum::Success,
-    RoutesTypesEnum::Destroy->value => BootstrapColorsEnum::Danger,
-    RoutesTypesEnum::Return->value => BootstrapColorsEnum::Primary,
-    RoutesTypesEnum::Cansel->value => BootstrapColorsEnum::Secondary,
+    RouteTypeEnum::List->value => BootstrapColorEnum::Primary,
+    RouteTypeEnum::View->value => BootstrapColorEnum::Info,
+    RouteTypeEnum::Create->value => BootstrapColorEnum::Primary,
+    RouteTypeEnum::Edit->value => BootstrapColorEnum::Warning,
+    RouteTypeEnum::Store->value => BootstrapColorEnum::Success,
+    RouteTypeEnum::Update->value => BootstrapColorEnum::Success,
+    RouteTypeEnum::Destroy->value => BootstrapColorEnum::Danger,
+    RouteTypeEnum::Return->value => BootstrapColorEnum::Primary,
+    RouteTypeEnum::Cansel->value => BootstrapColorEnum::Secondary,
 ];
 
 $iconsConfig = [
-    RoutesTypesEnum::List->value => 'fa-solid fa-table-list',
-    RoutesTypesEnum::View->value => 'fa-solid fa-eye',
-    RoutesTypesEnum::Create->value => 'fa-solid fa-file-circle-plus',
-    RoutesTypesEnum::Edit->value => 'fa-solid fa-pen-to-square',
-    RoutesTypesEnum::Store->value => 'fa-solid fa-floppy-disk',
-    RoutesTypesEnum::Update->value => 'fa-solid fa-floppy-disk',
-    RoutesTypesEnum::Destroy->value => 'fa-solid fa-trash',
-    RoutesTypesEnum::Return->value => 'bi bi-arrow-90deg-up',
-    RoutesTypesEnum::Cansel->value => 'fa-solid fa-xmark',
+    RouteTypeEnum::List->value => 'fa-solid fa-table-list',
+    RouteTypeEnum::View->value => 'fa-solid fa-eye',
+    RouteTypeEnum::Create->value => 'fa-solid fa-file-circle-plus',
+    RouteTypeEnum::Edit->value => 'fa-solid fa-pen-to-square',
+    RouteTypeEnum::Store->value => 'fa-solid fa-floppy-disk',
+    RouteTypeEnum::Update->value => 'fa-solid fa-floppy-disk',
+    RouteTypeEnum::Destroy->value => 'fa-solid fa-trash',
+    RouteTypeEnum::Return->value => 'bi bi-arrow-90deg-up',
+    RouteTypeEnum::Cansel->value => 'fa-solid fa-xmark',
 ]
 ?>
 
 @foreach($routes as $name => $route)
-    @if(RoutesTypesEnum::from($name) === RoutesTypesEnum::Destroy)
+    @if(RouteTypeEnum::from($name) === RouteTypeEnum::Destroy)
         <form method="post" action="{{route($route->route, $routes->id)}}" class="d-inline-block">
             @method('delete')
             @csrf
@@ -40,7 +40,7 @@ $iconsConfig = [
                 {{$route->title}}
             </button>
         </form>
-    @elseif(RoutesTypesEnum::from($name) === RoutesTypesEnum::Store || RoutesTypesEnum::from($name) === RoutesTypesEnum::Update)
+    @elseif(RouteTypeEnum::from($name) === RouteTypeEnum::Store || RouteTypeEnum::from($name) === RouteTypeEnum::Update)
         <button type="submit" class="btn btn-{{$size ?? 'no_size'}} btn-outline-{{$route->select($colorsConfig)}}">
             <i class="{{$route->select($iconsConfig)}}"></i>
             {{$route->title}}

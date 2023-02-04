@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Enums;
 
-enum BootstrapColorsEnum: string
+enum BootstrapColorEnum: string
 {
     case Primary='primary';
     case Secondary='secondary';

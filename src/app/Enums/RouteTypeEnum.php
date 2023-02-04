@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Enums;
 
-enum RoutesTypesEnum: string
+enum RouteTypeEnum: string
 {
     case List = 'list';
     case View = 'view';

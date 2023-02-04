@@ -7,6 +7,12 @@ use App\Models\AccountType;
 
 class AccountTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->authorizeResource(AccountType::class, 'accountType');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +44,7 @@ class AccountTypeController extends Controller
     {
         $data = $request->validated();
         $accountType = AccountType::create($data);
-        session()->flash('message', sprintf('Account Type %s (#%s) successfully created.', $accountType->title, $accountType->id));
+        session()->flash('message', sprintf('Account Type %s (#%s) successfully created.', $accountType->name, $accountType->id));
         return redirect()->route('account-types.show', $accountType);
     }
 
@@ -88,7 +94,7 @@ class AccountTypeController extends Controller
      */
     public function destroy(AccountType $accountType)
     {
-        $message = sprintf('Account Type %s (#%s) successfully deleted.', $accountType->title, $accountType->id);
+        $message = sprintf('Account Type %s (#%s) successfully deleted.', $accountType->name, $accountType->id);
         $accountType->deleteOrFail();
         session()->flash('message', $message);
         return redirect()->route('account-types.index');

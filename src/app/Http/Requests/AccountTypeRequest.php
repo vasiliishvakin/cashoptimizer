@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AccountTypeRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class AccountTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'name' => [
+                'required',
+                'string',
+                'min:3',
+                Rule::unique('account_types', 'name')->ignore($this->accountType),
+            ],
         ];
     }
 }

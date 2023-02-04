@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Utils;
 
 
+use App\Enums\RouteTypeEnum;
 use IteratorAggregate;
 use Traversable;
 
@@ -45,8 +46,8 @@ class BladeRoutesConfig implements IteratorAggregate
         if (method_exists($this, $name)) {
             return $this->{$name}(...$arguments);
         }
-        if (!RoutesTypesEnum::tryFrom($name)) {
-            throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RoutesTypesEnum::class));
+        if (!RouteTypeEnum::tryFrom($name)) {
+            throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RouteTypeEnum::class));
         }
         if (!empty($arguments)) {
             $this->setRoute($name, $arguments[0], $arguments[1] ?? null);
@@ -57,8 +58,8 @@ class BladeRoutesConfig implements IteratorAggregate
     public function __get(string $name)
     {
         if (!isset($this->items[$name])) {
-            if (!RoutesTypesEnum::tryFrom($name)) {
-                throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RoutesTypesEnum::class));
+            if (!RouteTypeEnum::tryFrom($name)) {
+                throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RouteTypeEnum::class));
             }
             throw new \InvalidArgumentException('Route %s is not exist', $name);
         }
@@ -73,8 +74,8 @@ class BladeRoutesConfig implements IteratorAggregate
     private function getRoute(string $name): ?BladeRouteItem
     {
         if (!isset($this->items[$name])) {
-            if (!RoutesTypesEnum::tryFrom($name)) {
-                throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RoutesTypesEnum::class));
+            if (!RouteTypeEnum::tryFrom($name)) {
+                throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RouteTypeEnum::class));
             }
             return null;
         }
@@ -83,8 +84,8 @@ class BladeRoutesConfig implements IteratorAggregate
 
     private function setRoute(string $name, string $route, ?string $title = null): void
     {
-        if (null === $type = RoutesTypesEnum::tryFrom($name)) {
-            throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RoutesTypesEnum::class));
+        if (null === $type = RouteTypeEnum::tryFrom($name)) {
+            throw new \InvalidArgumentException(sprintf('Route type %s is not instance %s', $name, RouteTypeEnum::class));
         }
         $this->items[$name] = new BladeRouteItem($type, $route, $title);
     }

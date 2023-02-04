@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Utils;
+
+use App\Enums\RouteTypeEnum;
 
 class BladeRouteItem
 {
-    public readonly RoutesTypesEnum $type;
+    public readonly RouteTypeEnum $type;
     public readonly string $route;
     public readonly ?string $title;
 
     /**
-     * @param RoutesTypesEnum $type
+     * @param RouteTypeEnum $type
      * @param string $route
      * @param ?string $title
      */
-    public function __construct(RoutesTypesEnum $type, string $route, ?string $title = null)
+    public function __construct(RouteTypeEnum $type, string $route, ?string $title = null)
     {
         $this->type = $type;
         $this->route = $route;

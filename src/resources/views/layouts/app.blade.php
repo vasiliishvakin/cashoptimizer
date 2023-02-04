@@ -1,1 +1,1 @@
-@include('layouts.bootstrap-01')
+@include('layouts.bootstrap.v1')

@@ -34,7 +34,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-
   phpmyadmin:
     image: phpmyadmin:latest
     depends_on:
@@ -48,7 +47,6 @@ services:
       PMA_HOST: mysql
     profiles:
       - donotstart
-
   node:
     image: node:latest
     ports:
@@ -57,7 +55,13 @@ services:
       - './src:/var/www/html'
     working_dir: '/var/www/html'
     command: 'npm run dev --debug'
-
+  mailhog:
+    image: mailhog/mailhog:latest
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - '127.0.0.1:1025:1025' # smtp server
+      - '127.0.0.1:8025:8025' # web ui
 configs:
   http_conf:
     file: './docker/nginx/conf.d/default.conf'

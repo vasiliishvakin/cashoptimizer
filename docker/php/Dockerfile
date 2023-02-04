@@ -9,7 +9,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN apt-get update && apt-get -y install git mc ssh wget curl
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd pdo_mysql redis apcu imagick yaml igbinary mbstring xml bcmath bz2 curl intl opcache xsl zip xdebug
+    install-php-extensions gd pdo_mysql redis apcu imagick yaml igbinary mbstring xml bcmath gmp decimal bz2 curl intl opcache xsl zip xdebug msgpack
 
 RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.client_host = host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
